@@ -5,9 +5,17 @@ import { Button } from "./components/button/Button";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [error, setError] = useState(false);
 
   const updateCounter = (increase: boolean) => {
     setCount((currentValue) => {
+      if (count === 0 && !increase) {
+        setError(true);
+        return currentValue;
+      }
+      else {
+        setError(false);
+      }
       return increase ? currentValue + 1 : currentValue - 1;
     });
   };
@@ -31,6 +39,7 @@ function App() {
               Reset
             </Button>
           </div>
+          {error && <div className="alert alert-danger mt-4" >Nem lehet az érték 0-nál kisebb.</div>}
         </div>
       </div>
     </div>
