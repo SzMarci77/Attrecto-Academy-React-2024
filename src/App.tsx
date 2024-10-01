@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import UsersPage from "./pages/UsersPage/UsersPage";
 import BadgesPage from "./pages/BadgesPage/BadgesPage";
 import { UserPage } from "./pages/UserPage/UserPage";
+import { NotFoundPage } from "./pages/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="users" element={<UsersPage />} />
         <Route path="user/:id" element={<UserPage />} />
         <Route path="badges" element={<BadgesPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
