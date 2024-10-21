@@ -17,11 +17,12 @@ import { badgesService } from "../../services/badges.service";
 const UsersPage = () => {
   const [users, setUsers] = useState<UserModel[]>([]);
   const [badges, setBadges] = useState<BadgeModel[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const fetchUsers = useCallback(async () => {
-    setUsers(await userService.getUsers());
+   try{setLoading(true); setUsers(await userService.getUsers());} finally{setLoading(false)}
   }, []);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const UsersPage = () => {
   };
 
   return (
-    <Page title="Users">
+    <Page loading={loading} title="Users">
       <div className="row">
         <div className="col-12 col-sm-6 col-md-4 col-lg-3">
           <Button color="primary" className="w-100 mb-3" onClick={goToUserPage}>
@@ -55,7 +56,7 @@ const UsersPage = () => {
         </div>
       </div>
       <div className="row">
-        {users.map((user) => (
+        {users?.map((user) => (
           <div className="col-12 col-sm-6 col-md-4 col-lg-3 my-1">
             <UserCard
               user={user}

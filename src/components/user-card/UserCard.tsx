@@ -39,7 +39,7 @@ const UserCard = ({ user, badges, handleDeleteUser }: UserCardProps) => {
         <FontAwesomeIcon icon={faTrash} />
       </Button>
       <div className={classes.Badges}>
-        {userBadges.map((badge) => {
+        {userBadges?.map((badge) => {
           const found = badges.find((item) => item.id === badge.id);
 
           return found ? (
